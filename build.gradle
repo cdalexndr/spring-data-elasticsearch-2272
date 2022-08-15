@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.2'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch'
+
+    //uncomment to fix  java.lang.NoClassDefFoundError: org/springframework/http/HttpHeaders
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+
+    //uncomment to fix  java.lang.TypeNotPresentException: Type org.springframework.web.reactive.function.client.WebClient not present
+    //implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
+
+    implementation 'co.elastic.clients:elasticsearch-java:7.17.5'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-client:7.17.5'
+    implementation 'jakarta.json:jakarta.json-api:2.0.1'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
